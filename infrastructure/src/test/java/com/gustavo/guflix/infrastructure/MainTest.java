@@ -10,3 +10,4 @@ public class MainTest {
         Main.main(new String[]{});
     }
 }
+
