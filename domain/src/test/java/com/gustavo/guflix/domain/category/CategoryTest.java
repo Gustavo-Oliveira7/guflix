@@ -1,5 +1,7 @@
 package com.gustavo.guflix.domain.category;
 
+import com.gustavo.guflix.domain.exception.DomainException;
+import com.gustavo.guflix.domain.validation.handler.ThrowValidationHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +31,7 @@ public class CategoryTest {
         final var actualCategory = Category.newCategory(expectedName,expectedDescription,expectedIsActive);
 
         final var actualException =
-                Assertions.assertThrows(DomainException.class, () -> actualCategory.validate());
+                Assertions.assertThrows(DomainException.class, () -> actualCategory.validate(new ThrowValidationHandler()));
 
         Assertions.assertEquals(expectedErrorCount,actualException.getErrors().size());
         Assertions.assertEquals(expectedErrorMessage,actualException.getErrors().get(0).getMessage());
